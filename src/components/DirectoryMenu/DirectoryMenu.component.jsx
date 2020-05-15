@@ -53,7 +53,7 @@ class DirectoryMenu extends React.Component {
             ({ id, title, imageUrl, size }) =>
               <MenuItem
                 key={ id }
-                title={ title.toUpperCase() }
+                title={ title }
                 imageUrl={ imageUrl }
                 size={ size || '' }
               />
