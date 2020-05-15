@@ -1,3 +1,10 @@
+## Crown Clothing E-Commerce project
+
+Demo E-Commerce project.<br />
+Created as a practice during the frontend development with ReactJS course. 
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
