@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/crwn-clothing/static/css/main.c8095e8c.chunk.css",
-    "main.js": "/crwn-clothing/static/js/main.b1af5009.chunk.js",
-    "main.js.map": "/crwn-clothing/static/js/main.b1af5009.chunk.js.map",
+    "main.css": "/crwn-clothing/static/css/main.baddc7e4.chunk.css",
+    "main.js": "/crwn-clothing/static/js/main.2c48a055.chunk.js",
+    "main.js.map": "/crwn-clothing/static/js/main.2c48a055.chunk.js.map",
     "runtime-main.js": "/crwn-clothing/static/js/runtime-main.4e42e579.js",
     "runtime-main.js.map": "/crwn-clothing/static/js/runtime-main.4e42e579.js.map",
-    "static/js/2.651b80cb.chunk.js": "/crwn-clothing/static/js/2.651b80cb.chunk.js",
-    "static/js/2.651b80cb.chunk.js.map": "/crwn-clothing/static/js/2.651b80cb.chunk.js.map",
+    "static/js/2.8f40e472.chunk.js": "/crwn-clothing/static/js/2.8f40e472.chunk.js",
+    "static/js/2.8f40e472.chunk.js.map": "/crwn-clothing/static/js/2.8f40e472.chunk.js.map",
     "index.html": "/crwn-clothing/index.html",
-    "precache-manifest.b690b2233872579600aa0bfd49c14963.js": "/crwn-clothing/precache-manifest.b690b2233872579600aa0bfd49c14963.js",
+    "precache-manifest.28a275bf453f658339ec08616c7f1576.js": "/crwn-clothing/precache-manifest.28a275bf453f658339ec08616c7f1576.js",
     "service-worker.js": "/crwn-clothing/service-worker.js",
-    "static/css/main.c8095e8c.chunk.css.map": "/crwn-clothing/static/css/main.c8095e8c.chunk.css.map",
-    "static/js/2.651b80cb.chunk.js.LICENSE.txt": "/crwn-clothing/static/js/2.651b80cb.chunk.js.LICENSE.txt"
+    "static/css/main.baddc7e4.chunk.css.map": "/crwn-clothing/static/css/main.baddc7e4.chunk.css.map",
+    "static/js/2.8f40e472.chunk.js.LICENSE.txt": "/crwn-clothing/static/js/2.8f40e472.chunk.js.LICENSE.txt",
+    "static/media/crown.ed28accb.svg": "/crwn-clothing/static/media/crown.ed28accb.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.4e42e579.js",
-    "static/js/2.651b80cb.chunk.js",
-    "static/css/main.c8095e8c.chunk.css",
-    "static/js/main.b1af5009.chunk.js"
+    "static/js/2.8f40e472.chunk.js",
+    "static/css/main.baddc7e4.chunk.css",
+    "static/js/main.2c48a055.chunk.js"
   ]
 }
