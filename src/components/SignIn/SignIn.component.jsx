@@ -21,8 +21,21 @@ class SignIn extends React.Component {
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
         <form onSubmit={ this.handleSubmit }>
-          <FormInput handleChange={ this.handleChange } label="Email" type="email" name="email" value={ this.state.email } required />
-          <FormInput handleChange={ this.handleChange } label="Password" type="password" name="password" value={ this.state.password } required />
+
+          <FormInput handleChange={ this.handleChange }
+                     label="Email"
+                     type="email"
+                     name="email"
+                     value={ this.state.email }
+                     required />
+
+          <FormInput handleChange={ this.handleChange }
+                     label="Password"
+                     type="password"
+                     name="password"
+                     value={ this.state.password }
+                     required />
+
           <Button type="submit">Sign In</Button>
           <Button onClick={ signInWithGoogle }>Sign In With Google</Button>
         </form>
