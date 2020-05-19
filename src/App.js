@@ -18,13 +18,14 @@ class App extends React.Component {
     };
   }
 
-  unsubscribeFromAuth = null;
+  unsubscribeFromAuthFunction = null;
+  unsubscribeFromSnapshotFunction = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    this.unsubscribeFromAuthFunction = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await saveUser(userAuth);
-        userRef.onSnapshot(this.setUserFromSnapshot);
+        this.unsubscribeFromSnapshotFunction = userRef.onSnapshot(this.setUserFromSnapshot);
       } else {
         this.clearUser();
       }
@@ -46,6 +47,21 @@ class App extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+    this.unsubscribeFromSnapshot()
+  }
+
+  unsubscribeFromSnapshot = () => {
+    if (this.unsubscribeFromSnapshotFunction) {
+      this.unsubscribeFromSnapshotFunction();
+      this.unsubscribeFromSnapshotFunction = null;
+    }
+  }
+
+  unsubscribeFromAuth = () => {
+    if (this.unsubscribeFromAuthFunction) {
+      this.unsubscribeFromAuthFunction();
+      this.unsubscribeFromAuthFunction = null;
+    }
   }
 
   render() {
