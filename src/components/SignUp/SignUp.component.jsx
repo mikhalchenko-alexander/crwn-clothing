@@ -57,7 +57,7 @@ class SignUp extends React.Component {
 
           {
             this.state.error ?
-              <span className='error'>{this.state.error}</span> :
+              <div className='error'>{this.state.error}</div> :
               null
           }
 
