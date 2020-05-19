@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage.component';
 import ShopPage from './pages/ShopPage/ShopPage.component';
 import Header from './components/Header/Header.component';
-import SignInPage from './pages/SignInPage/SignInPage.component';
+import SignInSignUpPage from './pages/SignInSignUpPage/SignInSignUpPage.component';
 import { auth } from './firebase/firebase.utils';
 import { saveUser } from './firebase/user-repo';
 
@@ -55,7 +55,7 @@ class App extends React.Component {
         <Switch>
           <Route exact={ true } path="/" component={ HomePage } />
           <Route exact={ true } path="/shop" component={ ShopPage } />
-          <Route exact={ true } path="/sign-in" component={ SignInPage } />
+          <Route exact={ true } path="/sign-in" component={ SignInSignUpPage } />
         </Switch>
       </div>
     );
