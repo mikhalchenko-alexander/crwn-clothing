@@ -7,16 +7,10 @@ import Header from './components/Header/Header.component';
 import SignInSignUpPage from './pages/SignInSignUpPage/SignInSignUpPage.component';
 import { auth } from './firebase/firebase.utils';
 import { saveUser } from './firebase/user-repo';
+import { connect } from 'react-redux';
+import { createSetCurrentUserAction } from './redux/user/user-actions';
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentUser: null
-    };
-  }
 
   unsubscribeFromAuthFunction = null;
   unsubscribeFromSnapshotFunction = null;
@@ -33,21 +27,19 @@ class App extends React.Component {
   }
 
   clearUser = () => {
-    this.setState({ currentUser: null });
-  }
+    this.props.setCurrentUser(null);
+  };
 
   setUserFromSnapshot = (userSnapshot) => {
-    this.setState({
-      currentUser: {
-        id: userSnapshot.id,
-        ...userSnapshot.data()
-      }
+    this.props.setCurrentUser({
+      id: userSnapshot.id,
+      ...userSnapshot.data()
     });
-  }
+  };
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
-    this.unsubscribeFromSnapshot()
+    this.unsubscribeFromSnapshot();
   }
 
   unsubscribeFromSnapshot = () => {
@@ -55,14 +47,14 @@ class App extends React.Component {
       this.unsubscribeFromSnapshotFunction();
       this.unsubscribeFromSnapshotFunction = null;
     }
-  }
+  };
 
   unsubscribeFromAuth = () => {
     if (this.unsubscribeFromAuthFunction) {
       this.unsubscribeFromAuthFunction();
       this.unsubscribeFromAuthFunction = null;
     }
-  }
+  };
 
   render() {
     return (
@@ -78,4 +70,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(createSetCurrentUserAction(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
