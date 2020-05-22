@@ -1,4 +1,5 @@
 import { ShoppingCartDropdownActionTypes } from './shopping-cart-dropdown-action-types';
+import { addCartItem } from './shopping-cart-dropdown-utils';
 
 const INITIAL_STATE = {
   hidden: true,
@@ -15,7 +16,7 @@ const shoppingCartDropdownReducer = (state = INITIAL_STATE, action) => {
     case ShoppingCartDropdownActionTypes.ADD_ITEM:
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload]
+        cartItems: addCartItem(state.cartItems, action.payload)
       };
     default:
       return state;
