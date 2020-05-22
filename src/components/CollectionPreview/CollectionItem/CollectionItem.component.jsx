@@ -2,7 +2,7 @@ import React from 'react';
 import './CollectionItem.styles.scss';
 import AddToCartButton from '../../AddToCartButton/AddToCartButton.component';
 import { connect } from 'react-redux';
-import { createAddItemShoppingCartDropdownAction } from '../../../redux/shopping-cart-dropdown/shopping-cart-dropdown-actions';
+import { createAddItemToShoppingCartAction } from '../../../redux/shopping-cart/shopping-cart-actions';
 
 const CollectionItem = ({ item, addItemToCart }) => {
   const { name, price, imageUrl } = item;
@@ -23,7 +23,7 @@ const CollectionItem = ({ item, addItemToCart }) => {
 
 const mapDispatchToProps = dispatch => ({
   addItemToCart: item => {
-    dispatch(createAddItemShoppingCartDropdownAction(item));
+    dispatch(createAddItemToShoppingCartAction(item));
   }
 });
 

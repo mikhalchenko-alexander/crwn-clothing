@@ -1,7 +1,7 @@
 import React from 'react';
 import './ShoppingCartIcon.styles.scss'
 import { ReactComponent as ShoppingBagIcon } from './shopping-bag.svg';
-import { createToggleHiddenShoppingCartDropdownAction } from '../../redux/shopping-cart-dropdown/shopping-cart-dropdown-actions';
+import { createToggleHiddenShoppingCartDropdownAction } from '../../redux/shopping-cart/shopping-cart-dropdown/shopping-cart-dropdown-actions';
 import { connect } from 'react-redux';
 
 const ShoppingCartIcon = ({ toggleCartHidden }) => (
