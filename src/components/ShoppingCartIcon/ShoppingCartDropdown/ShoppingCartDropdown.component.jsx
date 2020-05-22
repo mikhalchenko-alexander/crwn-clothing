@@ -4,6 +4,7 @@ import Button from '../../Button/Button.component';
 import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem.component';
 import { connect } from 'react-redux';
 import { selectShoppingCartItems } from '../../../redux/shopping-cart/shopping-cart-selectors';
+import { createStructuredSelector } from 'reselect';
 
 const ShoppingCartDropdown = ({ shoppingCartItems }) => (
   <div className="shopping-cart-dropdown">
@@ -16,8 +17,8 @@ const ShoppingCartDropdown = ({ shoppingCartItems }) => (
   </div>
 );
 
-const mapStateToProps = state => ({
-  shoppingCartItems: selectShoppingCartItems(state)
+const mapStateToProps = createStructuredSelector({
+  shoppingCartItems: selectShoppingCartItems
 });
 
 export default connect(mapStateToProps)(ShoppingCartDropdown);
