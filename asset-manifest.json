@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/crwn-clothing/static/css/main.0852ec91.chunk.css",
-    "main.js": "/crwn-clothing/static/js/main.be236674.chunk.js",
-    "main.js.map": "/crwn-clothing/static/js/main.be236674.chunk.js.map",
+    "main.css": "/crwn-clothing/static/css/main.6b1a860b.chunk.css",
+    "main.js": "/crwn-clothing/static/js/main.77665372.chunk.js",
+    "main.js.map": "/crwn-clothing/static/js/main.77665372.chunk.js.map",
     "runtime-main.js": "/crwn-clothing/static/js/runtime-main.4e42e579.js",
     "runtime-main.js.map": "/crwn-clothing/static/js/runtime-main.4e42e579.js.map",
-    "static/js/2.8d7299b2.chunk.js": "/crwn-clothing/static/js/2.8d7299b2.chunk.js",
-    "static/js/2.8d7299b2.chunk.js.map": "/crwn-clothing/static/js/2.8d7299b2.chunk.js.map",
+    "static/js/2.3f08795b.chunk.js": "/crwn-clothing/static/js/2.3f08795b.chunk.js",
+    "static/js/2.3f08795b.chunk.js.map": "/crwn-clothing/static/js/2.3f08795b.chunk.js.map",
     "index.html": "/crwn-clothing/index.html",
-    "precache-manifest.07c86659e088d5f3b375f22225b67dcf.js": "/crwn-clothing/precache-manifest.07c86659e088d5f3b375f22225b67dcf.js",
+    "precache-manifest.ac55e2d7f405f0673501a10db7e4136a.js": "/crwn-clothing/precache-manifest.ac55e2d7f405f0673501a10db7e4136a.js",
     "service-worker.js": "/crwn-clothing/service-worker.js",
-    "static/css/main.0852ec91.chunk.css.map": "/crwn-clothing/static/css/main.0852ec91.chunk.css.map",
-    "static/js/2.8d7299b2.chunk.js.LICENSE.txt": "/crwn-clothing/static/js/2.8d7299b2.chunk.js.LICENSE.txt",
-    "static/media/crown.ed28accb.svg": "/crwn-clothing/static/media/crown.ed28accb.svg",
+    "static/css/main.6b1a860b.chunk.css.map": "/crwn-clothing/static/css/main.6b1a860b.chunk.css.map",
+    "static/js/2.3f08795b.chunk.js.LICENSE.txt": "/crwn-clothing/static/js/2.3f08795b.chunk.js.LICENSE.txt",
+    "static/media/crown.19ef7b17.svg": "/crwn-clothing/static/media/crown.19ef7b17.svg",
     "static/media/shopping-bag.30f07071.svg": "/crwn-clothing/static/media/shopping-bag.30f07071.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.4e42e579.js",
-    "static/js/2.8d7299b2.chunk.js",
-    "static/css/main.0852ec91.chunk.css",
-    "static/js/main.be236674.chunk.js"
+    "static/js/2.3f08795b.chunk.js",
+    "static/css/main.6b1a860b.chunk.css",
+    "static/js/main.77665372.chunk.js"
   ]
 }
