@@ -6,22 +6,46 @@ import { connect } from 'react-redux';
 import { selectShoppingCartItems } from '../../../redux/shopping-cart/shopping-cart-selectors';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
+import { createToggleHiddenShoppingCartDropdownAction } from '../../../redux/shopping-cart/shopping-cart-dropdown/shopping-cart-dropdown-actions';
+import * as PropTypes from 'prop-types';
 
-const ShoppingCartDropdown = ({ shoppingCartItems, history }) => (
-  <div className="shopping-cart-dropdown">
-    <div className="cart-items">
-      {
-        shoppingCartItems.length ?
-          shoppingCartItems.map(item => <ShoppingCartItem key={ item.id } item={ item } />) :
-          <span className="empty-message">Your cart is empty</span>
-      }
-    </div>
-    <Button onClick={ () => history.push('/checkout') }>GO TO CHECKOUT</Button>
-  </div>
-);
+class ShoppingCartDropdown extends React.Component {
+
+  handleGoToCheckout = () => {
+    const { history, toggleShoppingCartDropdownHidden } = this.props;
+    toggleShoppingCartDropdownHidden();
+    history.push('/checkout');
+  };
+
+  render() {
+    const { shoppingCartItems } = this.props;
+    return (
+      <div className="shopping-cart-dropdown">
+        <div className="cart-items">
+          {
+            shoppingCartItems.length ?
+              shoppingCartItems.map(item => <ShoppingCartItem key={ item.id } item={ item } />) :
+              <span className="empty-message">Your cart is empty</span>
+          }
+        </div>
+        <Button onClick={ () => this.handleGoToCheckout() }>GO TO CHECKOUT</Button>
+      </div>
+    );
+  }
+}
+
+ShoppingCartDropdown.propTypes = {
+  shoppingCartItems: PropTypes.any,
+  history: PropTypes.any,
+  toggleShoppingCartDropdownHidden: PropTypes.any
+};
 
 const mapStateToProps = createStructuredSelector({
   shoppingCartItems: selectShoppingCartItems
 });
 
-export default withRouter(connect(mapStateToProps)(ShoppingCartDropdown));
+const mapDispatchToProps = dispatch => ({
+  toggleShoppingCartDropdownHidden: () => dispatch(createToggleHiddenShoppingCartDropdownAction())
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShoppingCartDropdown));
