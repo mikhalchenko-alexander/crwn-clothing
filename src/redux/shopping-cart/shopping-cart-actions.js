@@ -5,6 +5,11 @@ export const createAddItemToShoppingCartAction = item => ({
   payload: item
 });
 
+export const createRemoveItemToShoppingCartAction = itemId => ({
+  type: ShoppingCartActionTypes.REMOVE_ITEM,
+  payload: itemId
+});
+
 export const createClearItemFromShoppingCartAction = itemId => ({
   type: ShoppingCartActionTypes.CLEAR_ITEM,
   payload: itemId
