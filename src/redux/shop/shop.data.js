@@ -246,4 +246,12 @@ const SHOP_DATA = [
   }
 ];
 
-export default SHOP_DATA;
+const COLLECTION_ID_MAP = {
+  hats: 1,
+  sneakers: 2,
+  jackets: 3,
+  womens: 4,
+  mens: 5
+};
+
+export { SHOP_DATA, COLLECTION_ID_MAP };
