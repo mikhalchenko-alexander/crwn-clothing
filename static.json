@@ -1,6 +1,10 @@
 {
   "root": "build/",
   "routes": {
+    "/static/*": "/static/",
+    "/*.png": "/",
+    "/favicon.ico": "/favicon.ico",
+    "/robots.txt": "/robots.txt",
     "/**": "index.html"
   }
 }
