@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectShoppingCartItems, selectShoppingCartTotal } from '../../redux/shopping-cart/shopping-cart-selectors';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem.component';
+import StripeCheckoutButton from '../../components/StripeCheckoutButton/StripeCheckoutButton.component';
 
 const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal }) => {
   const HeaderBlock = ({ title }) => (
@@ -29,6 +30,8 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal }) => {
       <div className="total">
         <span>${ shoppingCartTotal }</span>
       </div>
+
+      <StripeCheckoutButton />
     </div>
   );
 };
