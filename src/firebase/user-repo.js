@@ -1,4 +1,4 @@
-import { firestore } from './firebase.utils';
+import { firestore } from './firebase-utils';
 
 export const saveUser = async (userData, additionalData) => {
   const userRef = firestore.doc(`/users/${ userData.uid }`);

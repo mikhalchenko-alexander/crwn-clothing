@@ -3,8 +3,8 @@ import './SignUp.styles.scss'
 
 import FormInput from '../_forms/FormInput/FormInput.component';
 import Button from '../Button/Button.component';
-import { saveUser } from '../../firebase/user-repo'
-import { auth } from '../../firebase/firebase.utils';
+import { saveUser } from '../../firebase/user-repo';
+import { auth } from '../../firebase/firebase-utils';
 
 class SignUp extends React.Component {
 
