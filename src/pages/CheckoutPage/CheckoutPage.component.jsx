@@ -6,8 +6,10 @@ import { createStructuredSelector } from 'reselect';
 import { selectShoppingCartItems, selectShoppingCartTotal } from '../../redux/shopping-cart/shopping-cart-selectors';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem.component';
 import StripeCheckoutButton from '../../components/StripeCheckout/StripeCheckoutButton/StripeCheckoutButton.component';
+import StripeCheckoutPopup from '../../components/StripeCheckout/StripeCheckoutPopup/StripeCheckoutPopup.component';
+import { selectStripeCheckoutPopupHidden } from '../../redux/stripe-checkout/stripe-checkout-selectors';
 
-const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal }) => {
+const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopupHidden }) => {
   const HeaderBlock = ({ title }) => (
     <div className="header-block">
       <span>{ title }</span>
@@ -32,13 +34,20 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal }) => {
       </div>
 
       <StripeCheckoutButton />
+
+      {
+        stripeCheckoutPopupHidden ?
+          null :
+          <StripeCheckoutPopup />
+      }
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   shoppingCartItems: selectShoppingCartItems,
-  shoppingCartTotal: selectShoppingCartTotal
+  shoppingCartTotal: selectShoppingCartTotal,
+  stripeCheckoutPopupHidden: selectStripeCheckoutPopupHidden
 });
 
 export default connect(mapStateToProps)(CheckoutPage);

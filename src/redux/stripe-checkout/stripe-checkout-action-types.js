@@ -1,0 +1,4 @@
+export const StripeCheckoutActionTypes = {
+  SHOW_CHECKOUT_POPUP: 'SHOW_CHECKOUT_POPUP',
+  HIDE_CHECKOUT_POPUP: 'HIDE_CHECKOUT_POPUP'
+};

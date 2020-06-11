@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { directoryReducer } from './directory/directory-reducer';
 import { shopDataReducer } from './shop/shop-reducer';
+import { stripeCheckoutReducer } from './stripe-checkout/stripe-checkout-reducer';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   shoppingCartDropdown: shoppingCartDropdownReducer,
   shoppingCart: shoppingCartReducer,
   directory: directoryReducer,
-  shopData: shopDataReducer
+  shopData: shopDataReducer,
+  stripeCheckout: stripeCheckoutReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
