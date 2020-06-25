@@ -4,11 +4,10 @@ import Button from '../../Button/Button.component';
 import { createShowCheckoutPopup } from '../../../redux/stripe-checkout/stripe-checkout-actions';
 import { connect } from 'react-redux';
 
-const StripeCheckoutButton = (props) => {
-  const { showStripeCheckoutPopup } = props;
+const StripeCheckoutButton = ({ showStripeCheckoutPopup, ...otherProps }) => {
   return <Button onClick={ () => showStripeCheckoutPopup() }
                  type="button"
-                 additionalClassNames="stripe-checkout-button" { ...props }>Buy Now</Button>;
+                 additionalClassNames="stripe-checkout-button" { ...otherProps }>Buy Now</Button>;
 };
 
 const mapDispatchToProps = dispatch => ({
