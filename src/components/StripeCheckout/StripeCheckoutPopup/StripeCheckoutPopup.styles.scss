@@ -8,10 +8,11 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  .close-button {
+  .close-button, .submit-button {
     background-color: white;
     color: black;
     border: 1px solid black;
@@ -19,6 +20,58 @@
     &:hover {
       background-color: black;
       color: white;
+      border-color: white;
     }
   }
+
+  .checkout-form {
+    width: 500px;
+    background-color: black;
+    padding: 10px;
+    color: white;
+    font-size: 18px;
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .close-button {
+        margin-right: 10px;
+      }
+    }
+
+    .card-errors {
+      color: #fa755a;
+      margin-bottom: 5px;
+    }
+
+    .StripeElement {
+      box-sizing: border-box;
+
+      height: 40px;
+
+      padding: 10px 12px;
+
+      border: 1px solid transparent;
+      background-color: white;
+
+      box-shadow: 0 1px 3px 0 #e6ebf1;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+      box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+      border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+      background-color: #fefde5 !important;
+    }
+  }
+
 }
