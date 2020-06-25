@@ -24,8 +24,10 @@ const CARD_ELEMENT_OPTIONS = {
   hidePostalCode: true
 };
 
-async function stripeTokenHandler(token) {
+async function stripeTokenHandler(token, onComplete) {
+  // TODO: replace log with backend charge
   console.log(token);
+  if (onComplete) onComplete();
 }
 
 const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
@@ -49,7 +51,7 @@ const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
       setError(result.error.message);
     } else {
       setError(null);
-      await stripeTokenHandler(result.token);
+      await stripeTokenHandler(result.token, hideStripeCheckoutPopup);
     }
   };
 
