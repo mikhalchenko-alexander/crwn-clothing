@@ -8,6 +8,8 @@ import CheckoutItem from '../../components/CheckoutItem/CheckoutItem.component';
 import StripeCheckoutButton from '../../components/StripeCheckout/StripeCheckoutButton/StripeCheckoutButton.component';
 import StripeCheckoutPopup from '../../components/StripeCheckout/StripeCheckoutPopup/StripeCheckoutPopup.component';
 import { selectStripeCheckoutPopupHidden } from '../../redux/stripe-checkout/stripe-checkout-selectors';
+import { Elements } from '@stripe/react-stripe-js';
+import { stripePromise } from '../../stripe/stripe-utils';
 
 const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopupHidden }) => {
   const HeaderBlock = ({ title }) => (
@@ -38,7 +40,9 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopu
       {
         stripeCheckoutPopupHidden ?
           null :
-          <StripeCheckoutPopup />
+          <Elements stripe={ stripePromise }>
+            <StripeCheckoutPopup />
+          </Elements>
       }
     </div>
   );
