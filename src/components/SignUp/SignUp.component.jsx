@@ -2,9 +2,9 @@ import React from 'react';
 import './SignUp.styles.scss'
 
 import FormInput from '../_forms/FormInput/FormInput.component';
-import Button from '../Button/Button.component';
 import { saveUser } from '../../firebase/user-repo';
 import { auth } from '../../firebase/firebase-utils';
+import { ButtonContainer } from '../Button/Button.styles';
 
 class SignUp extends React.Component {
 
@@ -62,7 +62,7 @@ class SignUp extends React.Component {
           }
 
           <div className="buttons">
-            <Button type="submit">Sign Up</Button>
+            <ButtonContainer type="submit">Sign Up</ButtonContainer>
           </div>
         </form>
 

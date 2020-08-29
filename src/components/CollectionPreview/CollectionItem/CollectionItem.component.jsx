@@ -1,8 +1,8 @@
 import React from 'react';
 import './CollectionItem.styles.scss';
-import AddToCartButton from '../../AddToCartButton/AddToCartButton.component';
 import { connect } from 'react-redux';
 import { createAddItemToShoppingCartAction } from '../../../redux/shopping-cart/shopping-cart-actions';
+import { ButtonContainer, ButtonStyles } from '../../Button/Button.styles';
 
 const CollectionItem = ({ item, addItemToCart }) => {
   const { name, price, imageUrl } = item;
@@ -17,7 +17,7 @@ const CollectionItem = ({ item, addItemToCart }) => {
       <div className="name">{ name }</div>
       <div className="price">${ price }</div>
     </div>
-    <AddToCartButton onClick={ () => addItemToCart(item) } />
+    <ButtonContainer className="add-to-cart-button" buttonStyle={ ButtonStyles.DEFAULT_BUTTON_INVERTED } onClick={ () => addItemToCart(item) }>ADD TO CART</ButtonContainer>
   </div>;
 };
 

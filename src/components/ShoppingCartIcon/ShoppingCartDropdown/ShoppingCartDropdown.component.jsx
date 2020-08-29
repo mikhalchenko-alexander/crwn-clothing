@@ -1,6 +1,5 @@
 import React from 'react';
 import './ShoppingCartDropdown.styles.scss';
-import Button from '../../Button/Button.component';
 import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem.component';
 import { connect } from 'react-redux';
 import { selectShoppingCartItems } from '../../../redux/shopping-cart/shopping-cart-selectors';
@@ -8,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
 import { createToggleHiddenShoppingCartDropdownAction } from '../../../redux/shopping-cart/shopping-cart-dropdown/shopping-cart-dropdown-actions';
 import * as PropTypes from 'prop-types';
+import { ButtonContainer } from '../../Button/Button.styles';
 
 class ShoppingCartDropdown extends React.Component {
 
@@ -28,7 +28,7 @@ class ShoppingCartDropdown extends React.Component {
               <span className="empty-message">Your cart is empty</span>
           }
         </div>
-        <Button onClick={ () => this.handleGoToCheckout() }>GO TO CHECKOUT</Button>
+        <ButtonContainer onClick={ () => this.handleGoToCheckout() }>GO TO CHECKOUT</ButtonContainer>
       </div>
     );
   }

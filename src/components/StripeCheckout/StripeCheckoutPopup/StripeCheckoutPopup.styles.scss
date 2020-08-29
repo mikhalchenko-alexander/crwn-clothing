@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
 
-  .close-button, .submit-button {
+  #close-button, #submit-button {
     background-color: white;
     color: black;
     border: 1px solid black;
@@ -36,7 +36,7 @@
       flex-direction: row;
       justify-content: space-between;
 
-      .close-button {
+      #close-button {
         margin-right: 10px;
       }
     }

@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectShoppingCartItems, selectShoppingCartTotal } from '../../redux/shopping-cart/shopping-cart-selectors';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem.component';
-import StripeCheckoutButton from '../../components/StripeCheckout/StripeCheckoutButton/StripeCheckoutButton.component';
 import StripeCheckoutPopup from '../../components/StripeCheckout/StripeCheckoutPopup/StripeCheckoutPopup.component';
 import { selectStripeCheckoutPopupHidden } from '../../redux/stripe-checkout/stripe-checkout-selectors';
 import { Elements } from '@stripe/react-stripe-js';
 import { stripePromise } from '../../stripe/stripe-utils';
+import { createShowCheckoutPopup } from '../../redux/stripe-checkout/stripe-checkout-actions';
+import { ButtonContainer } from '../../components/Button/Button.styles';
 
-const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopupHidden }) => {
+const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopupHidden, showStripeCheckoutPopup }) => {
   const HeaderBlock = ({ title }) => (
     <div className="header-block">
       <span>{ title }</span>
@@ -35,7 +36,7 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopu
         <span>${ shoppingCartTotal }</span>
       </div>
 
-      <StripeCheckoutButton />
+      <ButtonContainer className="stripe-checkout-button" onClick={ () => showStripeCheckoutPopup() }>BUY NOW</ButtonContainer>
 
       {
         stripeCheckoutPopupHidden ?
@@ -54,4 +55,9 @@ const mapStateToProps = createStructuredSelector({
   stripeCheckoutPopupHidden: selectStripeCheckoutPopupHidden
 });
 
-export default connect(mapStateToProps)(CheckoutPage);
+
+const mapDispatchToProps = dispatch => ({
+  showStripeCheckoutPopup: () => dispatch(createShowCheckoutPopup())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);

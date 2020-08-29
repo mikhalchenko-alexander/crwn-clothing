@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './StripeCheckoutPopup.styles.scss';
-import Button from '../../Button/Button.component';
 import { createHideCheckoutPopup } from '../../../redux/stripe-checkout/stripe-checkout-actions';
 import { connect } from 'react-redux';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { ButtonContainer } from '../../Button/Button.styles';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -63,8 +63,8 @@ const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
         <div className="card-errors" role="alert">{ error }</div>
       </div>
       <div className="buttons">
-        <Button onClick={ () => hideStripeCheckoutPopup() } additionalClassNames="close-button">Close</Button>
-        <Button type="submit" additionalClassNames="submit-button">Submit Payment</Button>
+        <ButtonContainer id="close-button" onClick={ () => hideStripeCheckoutPopup() }>Close</ButtonContainer>
+        <ButtonContainer id="submit-button" type="submit">Submit Payment</ButtonContainer>
       </div>
     </form>
   </div>;
