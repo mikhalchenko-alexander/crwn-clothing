@@ -1,10 +1,10 @@
 import React from 'react';
-import './SignUp.styles.scss'
 
 import FormInput from '../_forms/FormInput/FormInput.component';
 import { saveUser } from '../../firebase/user-repo';
 import { auth } from '../../firebase/firebase-utils';
 import { ButtonContainer } from '../Button/Button.styles';
+import { ErrorContainer, SignUpContainer, TitleContainer } from './SignUp.styles';
 
 class SignUp extends React.Component {
 
@@ -21,8 +21,8 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className='sign-up'>
-        <h2>I do not have an account</h2>
+      <SignUpContainer>
+        <TitleContainer>I do not have an account</TitleContainer>
         <span>Sign up with your email and password</span>
 
         <form onSubmit={ this.handleSubmit }>
@@ -57,16 +57,14 @@ class SignUp extends React.Component {
 
           {
             this.state.error ?
-              <div className='error'>{this.state.error}</div> :
+              <ErrorContainer>{ this.state.error }</ErrorContainer> :
               null
           }
 
-          <div className="buttons">
-            <ButtonContainer type="submit">Sign Up</ButtonContainer>
-          </div>
+          <ButtonContainer type="submit">Sign Up</ButtonContainer>
         </form>
 
-      </div>
+      </SignUpContainer>
     );
   }
 
