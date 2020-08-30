@@ -1,24 +1,26 @@
 import React from 'react';
-import './CollectionItem.styles.scss';
 import { connect } from 'react-redux';
 import { createAddItemToShoppingCartAction } from '../../../redux/shopping-cart/shopping-cart-actions';
 import { ButtonContainer, ButtonStyles } from '../../Button/Button.styles';
+import {
+  BackgroundImageContainer,
+  CollectionItemContainer,
+  FooterContainer,
+  NameContainer,
+  PriceContainer
+} from './CollectionItem.styles';
 
 const CollectionItem = ({ item, addItemToCart }) => {
   const { name, price, imageUrl } = item;
-  return <div className="collection-item">
-    <div
-      className="image"
-      style={ {
-        backgroundImage: `url(${ imageUrl })`
-      } }
-    />
-    <div className="footer">
-      <div className="name">{ name }</div>
-      <div className="price">${ price }</div>
-    </div>
-    <ButtonContainer className="add-to-cart-button" buttonStyle={ ButtonStyles.DEFAULT_BUTTON_INVERTED } onClick={ () => addItemToCart(item) }>ADD TO CART</ButtonContainer>
-  </div>;
+  return <CollectionItemContainer>
+    <BackgroundImageContainer imageUrl={ imageUrl } />
+    <FooterContainer>
+      <NameContainer>{ name }</NameContainer>
+      <PriceContainer>${ price }</PriceContainer>
+    </FooterContainer>
+    <ButtonContainer buttonStyle={ ButtonStyles.DEFAULT_BUTTON_INVERTED } onClick={ () => addItemToCart(item) }>ADD TO
+      CART</ButtonContainer>
+  </CollectionItemContainer>;
 };
 
 const mapDispatchToProps = dispatch => ({
