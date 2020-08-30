@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './CollectionsOverview.styles.scss';
 import CollectionPreview from '../CollectionPreview/CollectionPreview.component';
 import { createStructuredSelector } from 'reselect';
 import { selectShopDataCollectionsAsArray } from '../../redux/shop/shop-selectors';
