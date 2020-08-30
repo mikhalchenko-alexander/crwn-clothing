@@ -1,26 +1,35 @@
 import React from 'react';
-import './CheckoutItem.styles.scss';
 import {
   createAddItemToShoppingCartAction,
   createClearItemFromShoppingCartAction,
   createRemoveItemToShoppingCartAction
 } from '../../redux/shopping-cart/shopping-cart-actions';
 import { connect } from 'react-redux';
+import {
+  ArrowContainer,
+  CheckoutItemContainer,
+  ColumnContainer,
+  ImageContainer,
+  RemoveButtonContainer,
+  ValueContainer
+} from './CheckoutItem.styles';
 
 const CheckoutItem = ({ item, clearItemFromShoppingCart, increaseItemCount, decreaseItemCount }) => (
-  <div className="checkout-item">
-    <div className="image-container">
-      <img src={ item.imageUrl } alt="item" />
-    </div>
-    <div className="name">{ item.name }</div>
-    <div className="quantity">
-      <span className="arrow" onClick={ () => decreaseItemCount(item.id) }>&#10094;</span>
-      <span className="value">{ item.quantity }</span>
-      <span className="arrow" onClick={ () => increaseItemCount(item) }>&#10095;</span>
-    </div>
-    <div className="price">${ item.price }</div>
-    <div className="remove-button" onClick={ () => clearItemFromShoppingCart(item.id) }>&#10005;</div>
-  </div>
+  <CheckoutItemContainer>
+    <ColumnContainer>
+      <ImageContainer>
+        <img src={ item.imageUrl } alt="item" />
+      </ImageContainer>
+    </ColumnContainer>
+    <ColumnContainer>{ item.name }</ColumnContainer>
+    <ColumnContainer>
+      <ArrowContainer onClick={ () => decreaseItemCount(item.id) }>&#10094;</ArrowContainer>
+      <ValueContainer>{ item.quantity }</ValueContainer>
+      <ArrowContainer onClick={ () => increaseItemCount(item) }>&#10095;</ArrowContainer>
+    </ColumnContainer>
+    <ColumnContainer>${ item.price }</ColumnContainer>
+    <RemoveButtonContainer onClick={ () => clearItemFromShoppingCart(item.id) }>&#10005;</RemoveButtonContainer>
+  </CheckoutItemContainer>
 );
 
 const mapDispatchToProps = dispatch => ({
