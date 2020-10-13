@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './CheckoutPage.styles.scss';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectShoppingCartItems, selectShoppingCartTotal } from '../../redux/shopping-cart/shopping-cart-selectors';
@@ -10,33 +9,33 @@ import { selectStripeCheckoutPopupHidden } from '../../redux/stripe-checkout/str
 import { Elements } from '@stripe/react-stripe-js';
 import { stripePromise } from '../../stripe/stripe-utils';
 import { createShowCheckoutPopup } from '../../redux/stripe-checkout/stripe-checkout-actions';
-import { ButtonContainer } from '../../components/Button/Button.styles';
+import {
+  CheckoutHeaderContainer,
+  CheckoutPageContainer,
+  HeaderBlockContainer,
+  StripeCheckoutButtonContainer,
+  TotalContainer
+} from './CheckoutPage.styles';
 
 const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopupHidden, showStripeCheckoutPopup }) => {
-  const HeaderBlock = ({ title }) => (
-    <div className="header-block">
-      <span>{ title }</span>
-    </div>
-  );
-
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <HeaderBlock title="Product" />
-        <HeaderBlock title="Description" />
-        <HeaderBlock title="Quantity" />
-        <HeaderBlock title="Price" />
-        <HeaderBlock title="Remove" />
-      </div>
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlockContainer>Product</HeaderBlockContainer>
+        <HeaderBlockContainer>Description</HeaderBlockContainer>
+        <HeaderBlockContainer>Quantity</HeaderBlockContainer>
+        <HeaderBlockContainer>Price</HeaderBlockContainer>
+        <HeaderBlockContainer>Remove</HeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {
         shoppingCartItems.map(cartItem => <CheckoutItem key={ cartItem.id } item={ cartItem } />)
       }
 
-      <div className="total">
+      <TotalContainer>
         <span>${ shoppingCartTotal }</span>
-      </div>
+      </TotalContainer>
 
-      <ButtonContainer className="stripe-checkout-button" onClick={ () => showStripeCheckoutPopup() }>BUY NOW</ButtonContainer>
+      <StripeCheckoutButtonContainer onClick={ () => showStripeCheckoutPopup() }>BUY NOW</StripeCheckoutButtonContainer>
 
       {
         stripeCheckoutPopupHidden ?
@@ -45,7 +44,7 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopu
             <StripeCheckoutPopup />
           </Elements>
       }
-    </div>
+    </CheckoutPageContainer>
   );
 };
 
