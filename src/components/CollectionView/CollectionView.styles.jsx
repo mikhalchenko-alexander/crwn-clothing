@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CollectionPreviewContainer = styled.div`
+export const CollectionViewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
@@ -11,7 +11,8 @@ export const TitleContainer = styled.h1`
   margin-bottom: 25px;
 `;
 
-export const PreviewContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const ViewContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
 `;
