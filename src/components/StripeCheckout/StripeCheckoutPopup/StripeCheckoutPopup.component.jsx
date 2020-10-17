@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import './StripeCheckoutPopup.styles.scss';
 import { createHideCheckoutPopup } from '../../../redux/stripe-checkout/stripe-checkout-actions';
 import { connect } from 'react-redux';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { ButtonContainer } from '../../Button/Button.styles';
+import {
+  StripeCheckoutButtonsContainer,
+  CardErrorsContainer,
+  CheckoutFormContainer,
+  StripeCheckoutButtonContainer,
+  StripeCheckoutPopupContainer
+} from './StripeCheckoutPopup.styles';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -55,19 +60,20 @@ const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
     }
   };
 
-  return <div className="stripe-checkout-popup">
-    <form className="checkout-form" onSubmit={ handleSubmit }>
-      <div className="form-row">
+  return <StripeCheckoutPopupContainer>
+    <CheckoutFormContainer onSubmit={ handleSubmit }>
+      <div>
         <label htmlFor="card-element">Credit or debit card</label>
         <CardElement id="card-element" options={ CARD_ELEMENT_OPTIONS } onChange={ handleChange } />
-        <div className="card-errors" role="alert">{ error }</div>
+        <CardErrorsContainer role="alert">{ error }</CardErrorsContainer>
       </div>
-      <div className="buttons">
-        <ButtonContainer id="close-button" onClick={ () => hideStripeCheckoutPopup() }>Close</ButtonContainer>
-        <ButtonContainer id="submit-button" type="submit">Submit Payment</ButtonContainer>
-      </div>
-    </form>
-  </div>;
+      <StripeCheckoutButtonsContainer>
+        <StripeCheckoutButtonContainer id="close-button"
+                                       onClick={ () => hideStripeCheckoutPopup() }>Close</StripeCheckoutButtonContainer>
+        <StripeCheckoutButtonContainer id="submit-button" type="submit">Submit Payment</StripeCheckoutButtonContainer>
+      </StripeCheckoutButtonsContainer>
+    </CheckoutFormContainer>
+  </StripeCheckoutPopupContainer>;
 };
 
 const mapDispatchToProps = dispatch => ({
