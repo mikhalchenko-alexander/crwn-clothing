@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage.component';
 import ShopPage from './pages/ShopPage/ShopPage.component';
@@ -12,6 +11,7 @@ import { createSetCurrentUserAction } from './redux/user/user-actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage.component';
+import { AppGlobalStyles } from './App.styles';
 
 class App extends React.Component {
 
@@ -62,6 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <AppGlobalStyles />
         <Header />
         <Switch>
           <Route exact={ true } path="/" component={ HomePage } />
