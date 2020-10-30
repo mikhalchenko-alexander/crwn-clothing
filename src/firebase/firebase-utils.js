@@ -20,3 +20,12 @@ export const firestore = firebase.firestore();
 const authProvider = new firebase.auth.GoogleAuthProvider();
 authProvider.setCustomParameters({ 'prompt': 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(authProvider);
+export const createCollectionAndDocuments = async (collection, documents) => {
+  let collectionReference = firestore.collection(collection);
+  let batch = firestore.batch();
+  documents.forEach(document => {
+    let documentReference = collectionReference.doc();
+    batch.set(documentReference, document);
+  });
+  await batch.commit();
+};
