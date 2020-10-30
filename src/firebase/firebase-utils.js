@@ -19,7 +19,9 @@ export const firestore = firebase.firestore();
 
 const authProvider = new firebase.auth.GoogleAuthProvider();
 authProvider.setCustomParameters({ 'prompt': 'select_account' });
+
 export const signInWithGoogle = () => auth.signInWithPopup(authProvider);
+
 export const createCollectionAndDocuments = async (collection, documents) => {
   let collectionReference = firestore.collection(collection);
   let batch = firestore.batch();
@@ -28,4 +30,21 @@ export const createCollectionAndDocuments = async (collection, documents) => {
     batch.set(documentReference, document);
   });
   await batch.commit();
+};
+
+export const convertCollectionsSnapshotToMap = collections => {
+  const transformedCollections = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      id: doc.id,
+      routeName: encodeURI(title.toLowerCase()),
+      title,
+      items
+    };
+  });
+
+  return transformedCollections.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
 };
