@@ -16,3 +16,8 @@ export const selectCollectionByName = collectionName => createSelector(
   [selectShopDataCollections],
   collections => collections ? collections[collectionName] : null
 );
+
+export const selectShopDataCollectionsLoaded = createSelector(
+  [selectShopDataCollectionsAsArray],
+  collections => collections.length !== 0
+);
