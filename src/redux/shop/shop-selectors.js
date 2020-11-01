@@ -21,3 +21,8 @@ export const selectShopDataCollectionsLoaded = createSelector(
   [selectShopDataCollectionsAsArray],
   collections => collections.length !== 0
 );
+
+export const selectShopDataCollectionsFetching = createSelector(
+  [shopData],
+  shopData => shopData.isFetchingCollections
+);
