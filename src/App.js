@@ -11,7 +11,7 @@ import { createSetCurrentUserAction } from './redux/user/user-actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage.component';
-import { AppGlobalStyles } from './App.styles';
+import { StyledApp } from './App.styles';
 
 class App extends React.Component {
 
@@ -61,8 +61,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <AppGlobalStyles />
+      <StyledApp>
         <Header />
         <Switch>
           <Route exact={ true } path="/" component={ HomePage } />
@@ -76,7 +75,7 @@ class App extends React.Component {
                      (<SignInSignUpPage />)
                  } />
         </Switch>
-      </div>
+      </StyledApp>
     );
   }
 }
