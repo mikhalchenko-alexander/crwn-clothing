@@ -23,5 +23,5 @@ export const crateFetchCollectionsStartedAsyncAction = () => dispatch => {
       let collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       dispatch(crateFetchCollectionsSuccessAction(collectionsMap));
     })
-    .catch(error => crateFetchCollectionsFailureAction(error));
+    .catch(error => dispatch(crateFetchCollectionsFailureAction(error)));
 };
