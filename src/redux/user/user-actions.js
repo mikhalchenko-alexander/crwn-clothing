@@ -1,6 +1,15 @@
 import { UserActionTypes } from './user-action-types';
 
-export const createSetCurrentUserAction = user => ({
-  type: UserActionTypes.SET_CURRENT_USER,
+export const createGoogleSignInStartedAction = () => ({
+  type: UserActionTypes.GOOGLE_SIGN_IN_START
+});
+
+export const createSignInSuccessAction = user => ({
+  type: UserActionTypes.SIGN_IN_SUCCESS,
   payload: user
+});
+
+export const createSignInFailureAction = error => ({
+  type: UserActionTypes.SIGN_IN_SUCCESS,
+  payload: error
 });
