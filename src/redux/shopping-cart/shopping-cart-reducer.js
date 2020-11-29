@@ -22,6 +22,12 @@ const shoppingCartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: clearCartItem(state.cartItems, action.payload)
       };
+
+    case ShoppingCartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartItems: []
+      };
     default:
       return state;
   }
