@@ -11,12 +11,6 @@ import CheckoutPage from './pages/CheckoutPage/CheckoutPage.component';
 import { StyledApp } from './App.styles';
 
 class App extends React.Component {
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-    this.unsubscribeFromSnapshot();
-  }
-
   render() {
     return (
       <StyledApp>
