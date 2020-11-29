@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { UserActionTypes } from './user-action-types';
-import { auth, signInWithGoogle } from '../../firebase/firebase-utils';
+import { auth, getUserSession, signInWithGoogle } from '../../firebase/firebase-utils';
 import { saveUser } from '../../firebase/user-repo';
 import { createSignInFailureAction, createSignInSuccessAction } from './user-actions';
 
@@ -17,7 +17,7 @@ function* handleAuthentication(user) {
 function* googleSignIn() {
   try {
     const { user } = yield signInWithGoogle();
-    handleAuthentication(user);
+    yield handleAuthentication(user);
   } catch (error) {
     yield put(createSignInFailureAction(error));
   }
@@ -26,7 +26,17 @@ function* googleSignIn() {
 function* emailSignIn({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
-    handleAuthentication(user);
+    yield handleAuthentication(user);
+  } catch (error) {
+    yield put(createSignInFailureAction(error));
+  }
+}
+
+function* checkUserSession() {
+  try {
+    const user = yield getUserSession();
+    if (!user) return;
+    yield handleAuthentication(user);
   } catch (error) {
     yield put(createSignInFailureAction(error));
   }
@@ -40,9 +50,14 @@ function* emailAndPasswordSignInStartSaga() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, emailSignIn);
 }
 
+function* checkUserSessionSaga() {
+  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
+}
+
 export function* userSagas() {
   yield all([
     call(googleSignInStartSaga),
-    call(emailAndPasswordSignInStartSaga)
+    call(emailAndPasswordSignInStartSaga),
+    call(checkUserSessionSaga)
   ]);
 }

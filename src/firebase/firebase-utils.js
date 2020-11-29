@@ -48,3 +48,12 @@ export const convertCollectionsSnapshotToMap = collections => {
     return accumulator;
   }, {});
 };
+
+export const getUserSession = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(async userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
