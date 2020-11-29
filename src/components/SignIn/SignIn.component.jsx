@@ -1,10 +1,9 @@
 import React from 'react';
 import FormInput from '../_forms/FormInput/FormInput.component';
-import { auth } from '../../firebase/firebase-utils';
 import { ButtonContainer, ButtonStyles } from '../Button/Button.styles';
 import { ButtonsContainer, SignInContainer, TitleContainer } from './SignIn.styles';
 import { connect } from 'react-redux';
-import { createGoogleSignInStartedAction } from '../../redux/user/user-actions';
+import { createEmailSignInStartedAction, createGoogleSignInStartedAction } from '../../redux/user/user-actions';
 
 class SignIn extends React.Component {
 
@@ -52,15 +51,9 @@ class SignIn extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
-    const {email, password} = this.state;
-
-    try {
-      await auth.signInWithEmailAndPassword(email, password)
-      this.clearForm();
-    } catch (error) {
-      console.error('Error logging in user: ', error)
-    }
+    const { signInWithEmail } = this.props;
+    const { email, password } = this.state;
+    signInWithEmail(email, password);
   };
 
   clearForm = () => {
@@ -68,7 +61,7 @@ class SignIn extends React.Component {
       email: '',
       password: ''
     });
-  }
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -77,7 +70,8 @@ class SignIn extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  signInWithGoogle: () => dispatch(createGoogleSignInStartedAction())
+  signInWithGoogle: () => dispatch(createGoogleSignInStartedAction()),
+  signInWithEmail: (email, password) => dispatch(createEmailSignInStartedAction({ email, password }))
 });
 
 export default connect(null, mapDispatchToProps)(SignIn);

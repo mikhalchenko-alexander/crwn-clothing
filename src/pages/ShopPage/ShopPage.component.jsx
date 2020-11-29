@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CollectionOverviewContainer from '../../components/CollectionOverview/CollectionsOverview.container';
 import CollectionPageContainer from '../CollectionPage/CollectionPage.container';
@@ -25,8 +24,6 @@ class ShopPage extends React.Component {
     );
   }
 }
-
-ShopPage.propTypes = { match: PropTypes.any };
 
 const mapDispatchToProps = dispatch => ({
   fetchCollectionsStart: () => dispatch(createFetchCollectionsStartedAction())

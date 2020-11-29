@@ -5,7 +5,6 @@ import { selectShoppingCartItems } from '../../../redux/shopping-cart/shopping-c
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
 import { createToggleHiddenShoppingCartDropdownAction } from '../../../redux/shopping-cart/shopping-cart-dropdown/shopping-cart-dropdown-actions';
-import * as PropTypes from 'prop-types';
 import {
   CartItemsContainer,
   CheckoutButtonContainer,
@@ -37,12 +36,6 @@ class ShoppingCartDropdown extends React.Component {
     );
   }
 }
-
-ShoppingCartDropdown.propTypes = {
-  shoppingCartItems: PropTypes.any,
-  history: PropTypes.any,
-  toggleShoppingCartDropdownHidden: PropTypes.any
-};
 
 const mapStateToProps = createStructuredSelector({
   shoppingCartItems: selectShoppingCartItems
