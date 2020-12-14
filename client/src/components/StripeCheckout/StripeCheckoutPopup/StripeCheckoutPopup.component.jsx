@@ -3,10 +3,10 @@ import { createHideCheckoutPopup } from '../../../redux/stripe-checkout/stripe-c
 import { connect } from 'react-redux';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import {
-  StripeCheckoutButtonsContainer,
   CardErrorsContainer,
   CheckoutFormContainer,
   StripeCheckoutButtonContainer,
+  StripeCheckoutButtonsContainer,
   StripeCheckoutPopupContainer
 } from './StripeCheckoutPopup.styles';
 
