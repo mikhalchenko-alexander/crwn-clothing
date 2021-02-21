@@ -9,6 +9,9 @@ import {
   StripeCheckoutButtonsContainer,
   StripeCheckoutPopupContainer
 } from './StripeCheckoutPopup.styles';
+import axios from 'axios';
+import { createStructuredSelector } from 'reselect';
+import { selectShoppingCartTotal } from '../../../redux/shopping-cart/shopping-cart-selectors';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -29,13 +32,24 @@ const CARD_ELEMENT_OPTIONS = {
   hidePostalCode: true
 };
 
-async function stripeTokenHandler(token, onComplete) {
-  // TODO: replace log with backend charge
-  console.log(token);
+async function stripeTokenHandler(token, shoppingCartTotal, onComplete) {
+  const stripeAmount = shoppingCartTotal * 100;
+  axios({
+    url: 'payment',
+    method: 'post',
+    data: {
+      amount: stripeAmount,
+      token
+    }
+  }).then(response => {
+    alert('Payment successful');
+  }).catch(error => {
+    console.log('Payment error', error);
+  });
   if (onComplete) onComplete();
 }
 
-const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
+const StripeCheckoutPopup = ({ shoppingCartTotal, hideStripeCheckoutPopup }) => {
   const [error, setError] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
@@ -56,7 +70,7 @@ const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
       setError(result.error.message);
     } else {
       setError(null);
-      await stripeTokenHandler(result.token, hideStripeCheckoutPopup);
+      await stripeTokenHandler(result.token, shoppingCartTotal, hideStripeCheckoutPopup);
     }
   };
 
@@ -76,8 +90,12 @@ const StripeCheckoutPopup = ({ hideStripeCheckoutPopup }) => {
   </StripeCheckoutPopupContainer>;
 };
 
+const mapStateToProps = createStructuredSelector({
+  shoppingCartTotal: selectShoppingCartTotal
+});
+
 const mapDispatchToProps = dispatch => ({
   hideStripeCheckoutPopup: () => dispatch(createHideCheckoutPopup())
 });
 
-export default connect(null, mapDispatchToProps)(StripeCheckoutPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(StripeCheckoutPopup);
