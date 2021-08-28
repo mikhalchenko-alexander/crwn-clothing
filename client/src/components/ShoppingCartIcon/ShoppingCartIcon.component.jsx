@@ -1,23 +1,19 @@
 import React from 'react';
 import { createToggleHiddenShoppingCartDropdownAction } from '../../redux/shopping-cart/shopping-cart-dropdown/shopping-cart-dropdown-actions';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectShoppingCartItemsCount } from '../../redux/shopping-cart/shopping-cart-selectors';
-import { createStructuredSelector } from 'reselect';
 import { ItemCountContainer, ShoppingBagIconContainer, ShoppingCartIconContainer } from './ShoppingCartIcon.styles';
 
-const ShoppingCartIcon = ({ toggleCartHidden, itemCount }) => (
-  <ShoppingCartIconContainer onClick={ toggleCartHidden }>
-    <ShoppingBagIconContainer />
-    <ItemCountContainer>{ itemCount }</ItemCountContainer>
-  </ShoppingCartIconContainer>
-);
+const ShoppingCartIcon = () => {
+  const itemCount = useSelector(selectShoppingCartItemsCount);
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = dispatch => ({
-  toggleCartHidden: () => dispatch(createToggleHiddenShoppingCartDropdownAction())
-});
+  return (
+    <ShoppingCartIconContainer onClick={ () => dispatch(createToggleHiddenShoppingCartDropdownAction()) }>
+      <ShoppingBagIconContainer />
+      <ItemCountContainer>{ itemCount }</ItemCountContainer>
+    </ShoppingCartIconContainer>
+  );
+};
 
-const mapStateToProps = createStructuredSelector({
-  itemCount: selectShoppingCartItemsCount
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartIcon);
+export default ShoppingCartIcon;
