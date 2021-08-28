@@ -5,7 +5,6 @@ import CollectionView from '../../components/CollectionView/CollectionView.compo
 
 const CollectionPage = ({ match }) => {
   const collection = useSelector(selectCollectionByName(match.params.collectionId));
-  console.log(collection);
   return <CollectionView { ...collection } />;
 };
 
