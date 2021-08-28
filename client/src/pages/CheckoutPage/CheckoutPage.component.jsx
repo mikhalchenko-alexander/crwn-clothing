@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectShoppingCartItems, selectShoppingCartTotal } from '../../redux/shopping-cart/shopping-cart-selectors';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem.component';
 import StripeCheckoutPopup from '../../components/StripeCheckout/StripeCheckoutPopup/StripeCheckoutPopup.component';
@@ -17,7 +16,12 @@ import {
   TotalContainer
 } from './CheckoutPage.styles';
 
-const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopupHidden, showStripeCheckoutPopup }) => {
+const CheckoutPage = () => {
+  const shoppingCartItems = useSelector(selectShoppingCartItems);
+  const shoppingCartTotal = useSelector(selectShoppingCartTotal);
+  const stripeCheckoutPopupHidden = useSelector(selectStripeCheckoutPopupHidden);
+  const dispatch = useDispatch();
+
   return (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
@@ -35,7 +39,9 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopu
         <span>${ shoppingCartTotal }</span>
       </TotalContainer>
 
-      <StripeCheckoutButtonContainer onClick={ () => showStripeCheckoutPopup() }>BUY NOW</StripeCheckoutButtonContainer>
+      <StripeCheckoutButtonContainer onClick={ () => dispatch(createShowCheckoutPopup()) }>
+        BUY NOW
+      </StripeCheckoutButtonContainer>
 
       {
         stripeCheckoutPopupHidden ?
@@ -48,15 +54,4 @@ const CheckoutPage = ({ shoppingCartItems, shoppingCartTotal, stripeCheckoutPopu
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  shoppingCartItems: selectShoppingCartItems,
-  shoppingCartTotal: selectShoppingCartTotal,
-  stripeCheckoutPopupHidden: selectStripeCheckoutPopupHidden
-});
-
-
-const mapDispatchToProps = dispatch => ({
-  showStripeCheckoutPopup: () => dispatch(createShowCheckoutPopup())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);
+export default CheckoutPage;
